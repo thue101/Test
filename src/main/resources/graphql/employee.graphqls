@@ -1,0 +1,46 @@
+extend type QueryResolver {
+    employees: [Employee]
+    employeeWithFiler(filter: EmployeeFilter): [Employee]
+    employee(id:ID!): Employee!
+}
+
+extend type MutationResolver {
+    newEmployee(employee:EmployeeInput!): Employee
+}
+
+input  EmployeeInput{
+    name: String!
+    surname: String!
+    position: String!
+    salary: Int
+    age: Int
+    organisationId: Int!
+    departmentId: Int!
+}
+
+type Employee{
+    id:ID!
+    name: String!
+    surname: String!
+    position: String!
+    salary: Int
+    age: Int
+    organisationId: Int!
+    departmentId: Int!
+}
+
+input EmployeeFilter{
+    salary: FilterField
+    age: FilterField
+    position: FilterField
+}
+
+input FilterField {
+    operator: String!
+    value: String!
+}
+
+schema {
+    query: QueryResolver
+    mutation: MutationResolver
+}

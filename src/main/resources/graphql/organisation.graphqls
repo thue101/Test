@@ -1,0 +1,19 @@
+extend type QueryResolver  {
+    organisations: [Organisation]
+    organisation(id:ID!): Organisation!
+}
+
+extend type MutationResolver {
+    newOrganisation(organisation: OrganisationInput!): Organisation
+}
+
+input OrganisationInput{
+    name: String!
+}
+
+type Organisation{
+    id:ID!
+    name:String!
+    employees: [Employee]
+    departments:[Department]
+}
